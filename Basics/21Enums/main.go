@@ -2,44 +2,32 @@ package main
 
 import "fmt"
 
-type ServerState int
+// Define an enum using iota
+type Day int
 
 const (
-    StateIdle ServerState = iota
-    StateConnected
-    StateError
-    StateRetrying
+    Sunday Day = iota
+    Monday
+    Tuesday
+    Wednesday
+    Thursday
+    Friday
+    Saturday
 )
 
-var stateName = map[ServerState]string{
-    StateIdle:      "idle",
-    StateConnected: "connected",
-    StateError:     "error",
-    StateRetrying:  "retrying",
-}
-
-func (ss ServerState) String() string {
-    return stateName[ss]
-}
-
 func main() {
-    ns := transition(StateIdle)
-    fmt.Println(ns)
+    today := Tuesday
+    fmt.Println(today)        // Output: 2 (Tuesday is the 3rd item, so it gets value 2)
 
-    ns2 := transition(ns)
-    fmt.Println(ns2)
-}
-
-func transition(s ServerState) ServerState {
-    switch s {
-    case StateIdle:
-        return StateConnected
-    case StateConnected, StateRetrying:
-
-        return StateIdle
-    case StateError:
-        return StateError
+    // You can also use a switch to work with these enums
+    switch today {
+    case Sunday:
+        fmt.Println("It's Sunday!")
+    case Monday:
+        fmt.Println("It's Monday!")
+    case Tuesday:
+        fmt.Println("It's Tuesday!")
     default:
-        panic(fmt.Errorf("unknown state: %s", s))
+        fmt.Println("It's another day!")
     }
 }
