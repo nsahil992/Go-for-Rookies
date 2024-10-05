@@ -38,4 +38,16 @@ func main() {
 	for key, value := range languages {
 		fmt.Println(key, "=>", value)
 	}
+
+	studentGrades := map[string]string{
+        "Alice": "A",
+        "Bob":   "B",
+        "Eve":   "A",
+    }
+
+    fmt.Println("Alice's grade:", studentGrades["Alice"])
+
+	for student, grade := range studentGrades {
+        fmt.Printf("%s has grade %s\n", student, grade)
+    }
 }

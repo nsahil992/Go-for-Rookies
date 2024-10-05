@@ -4,7 +4,9 @@ import (
 )
 
 func main() {
-	var rank int = 1
+	var rank int
+	fmt.Println("Enter your rank: ")
+	fmt.Scanln(&rank)
 
 	if(rank == 1) {
 		fmt.Println("Congratulation! You won a GOLD medal 🥇")
