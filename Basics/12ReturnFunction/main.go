@@ -14,7 +14,7 @@ func operation() (int, int) {
 	sum := num1 + num2
 	diff := num1 - num2
 
-	fmt.Print("The sum is: ")
+	fmt.Print("The sum and difference is: ")
 	return sum, diff
 } 
 
