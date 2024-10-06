@@ -1,26 +1,31 @@
 package main
+
 import (
 	"fmt"
 )
 
 func main() {
-	for i := 1; i <= 5; i++ {
+	fmt.Println("Loops in Go lang")
+
+	for i := 1; i < 5; i++ {
 		fmt.Println("GOpher")
 	}
 
-	multiple := 5
-	n := 1
+	number := 5
+	count := 1
 
 	// Break
-	for {
-		var input string
-		fmt.Println("Type c to continue, any other letter to stop")
-		fmt.Scan(&input)
 
-		if(input == "c") {
-			fmt.Println(multiple * n)
-			n++
+	for {
+		var userInput string 
+		fmt.Println("Press c to continue, any other letter to stop.")
+		fmt.Scanln(&userInput)
+
+		if userInput == "c" {
+			fmt.Println(number * count)
+			count ++
 		} else {
+			fmt.Println("Quitting.......")
 			fmt.Println("Bye!")
 			break
 		}
@@ -29,7 +34,8 @@ func main() {
 	// Continue
 
 	for num := 1; num <= 5; num++ {
-		if(num == 3) {
+
+		if num == 3 {
 			continue
 		}
 		fmt.Println(num)

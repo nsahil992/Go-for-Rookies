@@ -18,6 +18,13 @@ func operation() (int, int) {
 	return sum, diff
 } 
 
+// Multiple return values 
+
+func getLanguages() (string, string, string) {
+	return "Go Lang", "Swift", "Julia"
+}
+
 func main() {
 	fmt.Println(operation())
+	fmt.Println(getLanguages())
 }
