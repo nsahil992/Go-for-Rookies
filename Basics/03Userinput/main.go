@@ -1,16 +1,15 @@
 package main
-import (
-	"fmt"
-)
+
+import "fmt"
 
 func main() {
 	fmt.Println("What is your name?")
 	var name string
-	fmt.Scan(&name)
-	fmt.Printf("Welcome onboard, %s!\n",name)
+	fmt.Scanln(&name)
+	fmt.Printf("Hey %v, Welcome onboard\n", name)
 
-	fmt.Print("Enter your email: ")
+	fmt.Println("Enter your email address: ")
 	var email string
-	fmt.Scan(&email)
-	fmt.Printf("Hey %s, please confirm your email: %s",name,email)
+	fmt.Scanln(&email)
+	fmt.Printf("Hey %v, please confirm your email address: %v\n",name,email)
 }
