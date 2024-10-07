@@ -21,15 +21,19 @@ func main() {
 	fmt.Println(i,s)   // <nil> <nil>
 
 	// Initializing a Pointer
-	a := "hello"
-	var b *string = &a
-	fmt.Println(b)
-	var c *string = &a
-	fmt.Println(c)
-	var d *string = &a
-	fmt.Println(d)
+	a := 10
+	var ptr_i *int = &a
+	fmt.Println(ptr_i)
 
-	// Dereferencing a pointer
-	var deref string = *(&a)
-	fmt.Println(deref)
+	z := "z"
+	ptr_z := &z
+	fmt.Println(ptr_z)
+
+	// dereferencing a Pointer
+	y := "Hello"
+	fmt.Println(y)
+	ptr_y := &y
+	*ptr_y = "World"
+	fmt.Println(y)
+
 }
