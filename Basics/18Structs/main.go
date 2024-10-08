@@ -10,6 +10,11 @@ type Car struct {
 	model int
 }
 
+type Student struct {
+	name string 
+	rollNo int
+}
+
 func main() {
 	var car1 Car
 	car1.name = "Lexus ES 300H"
@@ -38,4 +43,7 @@ func main() {
 	car3.model = 2024
 
 	fmt.Println(car3)
+
+	st := Student{"Joe",1}
+	fmt.Printf("%+v",st)
 }
