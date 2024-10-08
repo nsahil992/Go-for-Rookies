@@ -1,26 +1,25 @@
 package main
-
 import "fmt"
 
-type rect struct {
-    width, height int
-}
-
-func (r *rect) area() int {
-    return r.width * r.height
-}
-
-func (r rect) perim() int {
-    return 2*r.width + 2*r.height
-}
-
 func main() {
-    r := rect{width: 10, height: 5}
+	sahil := User{"Sahil", "shl@mail.com", true, 21}
+	fmt.Println(sahil)
+	fmt.Println(sahil.Email)
+	sahil.Score()
+    sahil.Verified()
+}
 
-    fmt.Println("area: ", r.area())
-    fmt.Println("perim:", r.perim())
+type User struct {
+	Name 	string
+	Email 	string
+	Status 	bool
+	Age 	int
+}
 
-    rp := &r
-    fmt.Println("area: ", rp.area())
-    fmt.Println("perim:", rp.perim())
+func (u User) Score() {
+	fmt.Println("Sahil has scored 100  marks")
+}
+
+func (u User) Verified() {
+    fmt.Println("Sahil has successfully verfied")
 }
