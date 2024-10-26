@@ -1,20 +1,44 @@
 package main
-import ("fmt")
+
+import (
+	"fmt"
+	"time"
+)
+
+func mixIngredients(done chan<- string) {
+	fmt.Println("Mixing the ingredients...")
+	time.Sleep(2 * time.Second)
+	done <- "Ingredients are mixed"
+	fmt.Println("Finished mixing ingredients")
+}
+
+func bakeCake(done chan string) {
+	msg := <-done
+	fmt.Println("Received:", msg)
+	fmt.Println("Baking the cake...")
+	time.Sleep(3 * time.Second)
+	done <- "Cake is baked"
+	fmt.Println("Finished baking the cake.")
+}
+
+func decorateCake(done chan string) {
+	msg := <-done
+	fmt.Println("Received:", msg)
+	fmt.Println("Decorating the cake...")
+	time.Sleep(2 * time.Second)
+	fmt.Println("Finished decorating the cake.")
+}
 
 func main() {
-	ch := make(chan int, 10)
-	ch <- 10
-	ch <- 20
-	val, ok := <-ch
-	fmt.Println(val, ok)
+	done := make(chan string, 3)
 
-	close(ch)
+	go mixIngredients(done)
+	go bakeCake(done)
+	go decorateCake(done)
 
-	val, ok = <- ch
-	fmt.Println(val, ok)
+	time.Sleep(8 * time.Second)
 
-	val, ok = <-ch
-	fmt.Println(val, ok)
+	close(done)
 
-
+	fmt.Println("Cake is ready!")
 }
