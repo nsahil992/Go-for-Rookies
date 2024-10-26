@@ -7,8 +7,8 @@ import (
 
 func main() {
 
-	start := time.Now()           // will return current local time
-	for i := 1; i <= 10000; i++ { // we will print the numbers from 1 to 10000
+	start := time.Now()        // will return current local time
+	for i := 1; i <= 10; i++ { // we will print the square of numbers from 1 to 10
 		calculateSquare(i) // we called the function
 	}
 	elapsed := time.Since(start) // since is the method from the time package that would return
