@@ -2,29 +2,41 @@ package main
 
 import (
 	"fmt"
-	"sync"
+	"time"
 )
 
 func main() {
-	var wg sync.WaitGroup
-	wg.Add(2)
-	ch := make(chan int, 3)
-	go sell(ch, &wg)
-	wg.Wait()
+	done := make(chan string, 3)
+
+	go mixIngredients(done)
+	go bakeCake(done)
+	go decorateCake(done)
+
+	time.Sleep(8 * time.Second)
+
+	fmt.Println("Cake is ready 🎂🎂")
 }
 
-func sell(ch chan int, s *sync.WaitGroup) {
-	ch <- 10
-	ch <- 20
-	ch <- 30
-	go buy(ch, s)
-	fmt.Println("Sent data to the channel")
-	s.Done()
+func mixIngredients(done chan string) {
+	fmt.Println("Mixing Ingredients...")
+	time.Sleep(2 * time.Second)
+	done <- "Ingredients mixed"
+	fmt.Println("Finished mixing ingredients.")
 }
 
-func buy(ch chan int, s *sync.WaitGroup) {
-	fmt.Println("Waiting for data")
-	fmt.Println("Received data:",<-ch)
-	s.Done()
+func bakeCake(done chan string) {
+	msg := <-done
+	fmt.Println("Received:", msg)
+	fmt.Println("Baking the cake...")
+	time.Sleep(3 * time.Second)
+	done <- "Cake is baked!"
+	fmt.Println("Finished baking cake.")
+}
 
+func decorateCake(done chan string) {
+	msg := <-done
+	fmt.Println("Received:", msg)
+	fmt.Println("Decorating cake...")
+	time.Sleep(2 * time.Second)
+	fmt.Println("Finished decorating cake.")
 }
