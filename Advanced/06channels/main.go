@@ -6,22 +6,25 @@ import (
 )
 
 func main() {
-	ch := make(chan string) // it can only transfer data of type string
-	go sell(ch)
-	go buy(ch)
+	done := make(chan string)
+	go mixIngredients(done)
+	go bakeCake(done)
+
+	time.Sleep(5 * time.Second)
+	fmt.Println("Cake is ready")
+}
+
+func mixIngredients(done chan string) {
+	fmt.Println("Alex: Mixing ingredients...")
 	time.Sleep(2 * time.Second)
+	done <- "Ingredient are ready!"
+	fmt.Println("Alex: Ingredients are mixed.")
 }
 
-// send data to the channel
-func sell(ch chan string) {
-	ch <- "Furniture"
-	fmt.Println("Sent data to the channel")
-}
-
-// receive data from the channel
-func buy(ch chan string) {
-	fmt.Println("Waiting for data")
-	val := <- ch
-	fmt.Println("Recieved data:",val)
-
+func bakeCake(done chan string) {
+	msg := <-done
+	fmt.Println("Sam received: ", msg)
+	fmt.Println("Sam baking cake...")
+	time.Sleep(3 * time.Second)
+	fmt.Println("Sam: Cake is baked!")
 }
