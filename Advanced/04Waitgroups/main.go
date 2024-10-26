@@ -5,21 +5,23 @@ import (
 	"sync"
 	"time"
 )
-func calculateSquare(i int, wg *sync.WaitGroup) {
-	fmt.Println(i*i)
-	wg.Done()
-		
-}
 
 func main() {
 	var wg sync.WaitGroup
-	start := time.Now()
-	wg.Add(10)
-	for i := 1; i <= 10; i++ {
-		go calculateSquare(i, &wg)   
-		
-	}
-	elapsed := time.Since(start)
+	wg.Add(3)
+
+	go task("Boiling water", &wg)
+	go task("Making tea", &wg)
+	go task("Serving tea", &wg)
+
 	wg.Wait()
-	fmt.Println("Function took", elapsed,)
+	fmt.Println("Tea is ready!")
+}
+
+func task(name string, wg *sync.WaitGroup) {
+	fmt.Println("Started", name)
+	time.Sleep(time.Second)
+	fmt.Println("Finished", name)
+
+	wg.Done()
 }
