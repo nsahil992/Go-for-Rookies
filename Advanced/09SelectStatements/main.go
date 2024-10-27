@@ -6,27 +6,39 @@ import (
 )
 
 func main() {
-	ch1 := make(chan string)
-	ch2 := make(chan string)
+	done := make(chan string, 3)
+	go mixIngredients(done)
+	go bakeCake(done)
+	go decorateCake(done)
 
-	go goOne(ch1)
-	go goTwo(ch2)
-
-	select {
-	case val1 := <- ch1:
-		fmt.Println(val1)
-	case val2 := <- ch2:
-		fmt.Println(val2)
-	default:
-		fmt.Println("Executed default block")
+	for i := 0; i < 3; i++ {
+		select {
+		case msg := <-done:
+			fmt.Println("Received:", msg)
+		case <-time.After(4 * time.Second):
+			fmt.Println("Someone took too long and missed the deadline!")
+		}
 	}
-	time.Sleep(1 * time.Second)
+	fmt.Println("Cake is ready for party 🎉")
 }
 
-func goOne(ch1 chan string) {
-	ch1 <- "Channel-1"
+func mixIngredients(done chan<- string) {
+	fmt.Println("Alice is mixing ingredients...")
+	time.Sleep(2 * time.Second)
+	done <- "Ingredients are mixed."
+	fmt.Println("Alice: Finished mixing ingredients.")
 }
 
-func goTwo(ch2 chan string) {
-	ch2 <- "Channel-2"
+func bakeCake(done chan<- string) {
+	fmt.Println("Bob is baking the cake...")
+	time.Sleep(3 * time.Second)
+	done <- "Cake is baked."
+	fmt.Println("Bob: Finished baking the cake.")
+}
+
+func decorateCake(done chan<- string) {
+	fmt.Println("Carol is decorating cake...")
+	time.Sleep(2 * time.Second)
+	done <- "Cake is decorated."
+	fmt.Println("Carol is decorating cake...")
 }
