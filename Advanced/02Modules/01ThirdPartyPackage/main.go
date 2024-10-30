@@ -8,4 +8,6 @@ import (
 func main() {
 	uuid := uuid.NewRandom()
 	fmt.Println(uuid)
+
+	// Encrypt and decrypt
 }
