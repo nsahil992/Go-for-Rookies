@@ -1,25 +1,19 @@
 package main
-import "fmt"
+
+import (
+	"fmt"
+)
 
 func main() {
-	sahil := User{"Sahil", "shl@mail.com", true, 21}
-	fmt.Println(sahil)
-	fmt.Println(sahil.Email)
-	sahil.Score()
-    sahil.Verified()
+	person := Person{Name: "Sahil", Age: 21}
+	person.greet()
 }
 
-type User struct {
-	Name 	string
-	Email 	string
-	Status 	bool
-	Age 	int
+type Person struct {
+	Name string
+	Age  int
 }
 
-func (u User) Score() {
-	fmt.Println("Sahil has scored 100  marks")
-}
-
-func (u User) Verified() {
-    fmt.Println("Sahil has successfully verfied")
+func (p Person) greet() {
+	fmt.Println("Hello, My name is ", p.Name, "and I am ", p.Age, "years old.")
 }
