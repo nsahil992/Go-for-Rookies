@@ -10,4 +10,10 @@ func main() {
 	fmt.Println(uuid)
 
 	// Encrypt and decrypt
+
+}
+
+func nimbus(str string) string {
+	encryptedStr := ""
+
 }
