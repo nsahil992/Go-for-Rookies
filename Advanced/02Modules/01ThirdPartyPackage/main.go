@@ -15,5 +15,10 @@ func main() {
 
 func nimbus(str string) string {
 	encryptedStr := ""
-
+	for c, _ := range str {
+		asciiCode := int(c)
+		character := string(asciiCode + 3)
+		encryptedStr += character
+	}
+	return encryptedStr
 }
