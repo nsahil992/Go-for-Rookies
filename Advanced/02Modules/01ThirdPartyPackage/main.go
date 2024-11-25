@@ -8,7 +8,6 @@ import (
 func main() {
 	uuid := uuid.NewRandom()
 	fmt.Println(uuid)
-	fmt.Println(nimbus)
 
 	// Encrypt and decrypt
 
