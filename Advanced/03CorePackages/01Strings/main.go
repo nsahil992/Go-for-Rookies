@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	// Contains
+	// Contains :- If the string contains a specific word
 
 	str := "Go is awesome"
 
@@ -22,11 +22,11 @@ func main() {
 		fmt.Println("string not contains \"fantastic\"")
 	}
 
-	// Count
+	// Count :- How many times the word appeared in a string
 
 	str2 := "Go is very powerful and best programming language. I love Go lang."
 
-	count := strings.Count(str2, "go")
+	count := strings.Count(str2, "Go")
 	fmt.Printf("The substring 'GO' appears %d times.\n", count)
 
 	count2 := strings.Count(str, "Python")

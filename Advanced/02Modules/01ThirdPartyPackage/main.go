@@ -1,24 +1,11 @@
 package main
 
 import (
-	"fmt"
-	"github.com/pborman/uuid"
+	"github.com/fatih/color"
 )
 
 func main() {
-	uuid := uuid.NewRandom()
-	fmt.Println(uuid)
-
-	// Encrypt and decrypt
-
-}
-
-func nimbus(str string) string {
-	encryptedStr := ""
-	for c, _ := range str {
-		asciiCode := int(c)
-		character := string(asciiCode + 3)
-		encryptedStr += character
-	}
-	return encryptedStr
+	color.Green("Hello, this is a green message!")
+	color.Red("Warning: this is a red alert!")
+	color.Blue("Info: Everything is running smoothly.")
 }

@@ -12,17 +12,25 @@ type Product struct {
 	Price    float64
 }
 
-var products = []Product{
-	{1, "Laptop", 10, 10000},
-	{2, "Mobile", 10, 10000},
-	{3, "Tablet", 10, 10000},
-}
+var Products = []Product
 
 func homePage(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Welcome to the homepage!")
 	fmt.Println("Endpoint Hit: homepage")
 }
-func main() {
+
+func handleRequest() {
+
 	http.HandleFunc("/", homePage)
 	http.ListenAndServe("localhost:10000", nil)
+}
+
+func main() {
+
+	Products = []Product{
+		{1, "Laptop", 10, 10000},
+		{2, "Mobile", 10, 10000},
+		{3, "Tablet", 10, 10000},
+	}
+	handleRequest()
 }
