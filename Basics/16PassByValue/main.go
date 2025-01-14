@@ -1,29 +1,22 @@
-/*
-1. Passing by Value (Alice’s Book Summary)
-In this scenario, Alice writes her summary in her own notebook and then gives Bob a copy of her summary.
-
-Alice is the original author of the summary.
-Bob gets a copy of the summary, so if Bob changes anything in the summary, it doesn't affect Alice’s original notebook.
-This is like passing by value — Bob gets a copy of Alice's summary, but any changes Bob makes won't change Alice’s original summary.
-*/
-
 package main
+
 import "fmt"
 
-func main() {
-	// Alice's original book summary
-	bookSummary := "The book is about a detective solving a mystery."
-	fmt.Println("Before passing the summary:", bookSummary)
-	
-	// Pass by value (copy of the book summary)
-	modifySummary(bookSummary)
-
-	// Alice's summary remains unchanged
-	fmt.Println("After Bob tries to modify the summary:", bookSummary)
+// Vidur attempt to change the king
+func suggestKing(suggestion string) {
+	fmt.Println("Vidur suggests a new king...")
+	suggestion = "Yudhistira" // This change affects only the copy, not the original variable
+	fmt.Println("Inside Vidur's mind, king is:", suggestion)
 }
 
-func modifySummary(summary string) {
-	// Bob tries to modify the copy of the summary (pass by value)
-	summary = "The detective solves a big mystery and catches the criminal."
-	fmt.Println("Inside the function (modified copy):", summary)
+func main() {
+	// Initializing the king as Dhritarashtra
+	king := "Dhritarashtra"
+	fmt.Println("King to become is:", king)
+
+	// Passing the value of king (not its address) to the function
+	suggestKing(king)
+
+	// Final value of king even after Vidur’s suggestion
+	fmt.Println("The king of Hastinapur is still:", king)
 }
