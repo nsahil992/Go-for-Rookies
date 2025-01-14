@@ -1,39 +1,23 @@
-// A pointer is a variable that holds memory address of another variable and also point where the memory is located
-
 package main
 
-import (
-	"fmt"
-)
+import "fmt"
 
 func main() {
+	// Initializing the king variable
+	king := "Dhritarashtra"
+	fmt.Println("King to become is:", king)
 
-	// Address Operator
-	x := 77
-	fmt.Println("Memory address of x:",&x) // 0x1400009a020
+	// Declaring a pointer variable vidur, which will point to the address of king
+	var vidur *string
+	vidur = &king // vidur now stores the address of the king variable
 
-	// Dereference Operator
-	fmt.Println("The value of x:",*(&x))  // 77
+	// Printing the address where vidur points to (the address of the king)
+	fmt.Printf("Vidur comes to know that the king of hastinapur (%v) will be %v\n", vidur, king)
 
-	// Declaring a Pointer
-	var i *int 
-	var s *string
-	fmt.Println(i,s)   // <nil> <nil>
+	// Vidur suggests a new king by changing the value at the address
+	fmt.Println("Vidur suggests, Pandu should be king of Hastinapur")
+	*vidur = "Pandu" // Dereferencing vidur (changing the value at that address)
 
-	// Initializing a Pointer
-	a := 10
-	var ptr_i *int = &a
-	fmt.Println(ptr_i)
-
-	z := "z"
-	ptr_z := &z
-	fmt.Println(ptr_z)
-
-	// dereferencing a Pointer
-	y := "Hello"
-	fmt.Println(y)
-	ptr_y := &y
-	*ptr_y = "World"
-	fmt.Println(y)
-
+	// Final value of king after Vidur’s suggestion
+	fmt.Println("The king of Hastinapur becomes ", king)
 }
