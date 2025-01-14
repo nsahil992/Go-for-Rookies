@@ -31,4 +31,11 @@ func main() {
 
 	count2 := strings.Count(str, "Python")
 	fmt.Printf("The substring 'Python' appears %d times in the string.\n", count2)
+
+	// ReplaceAll
+
+	learning := "Python is a very powerful programming language"
+	fun := "Python"
+	result := strings.ReplaceAll(learning, fun, "Go")
+	fmt.Println(result)
 }
