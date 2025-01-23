@@ -38,4 +38,18 @@ func main() {
 	fun := "Python"
 	result := strings.ReplaceAll(learning, fun, "Go")
 	fmt.Println(result)
+
+	// Split
+
+	statement := "I, am, learning, Go, Language"
+	fmt.Println(statement)
+	splitStatement := strings.Split(statement, ",")
+	fmt.Println(splitStatement)
+
+	// Trim space
+
+	str = "            Hello, Go           "
+	fmt.Println("Previous: ", str)
+	trimmed := strings.TrimSpace(str)
+	fmt.Println("Now: ", trimmed)
 }
