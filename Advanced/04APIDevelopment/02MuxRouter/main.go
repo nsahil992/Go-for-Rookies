@@ -2,35 +2,46 @@ package main
 
 import (
 	"fmt"
+	"github.com/gorilla/mux"
+	"log"
 	"net/http"
 )
 
-type Product struct {
-	Id       int
-	Name     string
-	Quantity int
-	Price    float64
+func coffeeHandler(w http.ResponseWriter, r *http.Request) {
+	_, err := fmt.Fprintln(w, "Here's your coffee! ☕️")
+	if err != nil {
+		log.Fatal(err)
+		return
+	}
 }
 
-var Products = []Product
-
-func homePage(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Welcome to the homepage!")
-	fmt.Println("Endpoint Hit: homepage")
+func snacksHandler(w http.ResponseWriter, r *http.Request) {
+	_, err := fmt.Fprintln(w, "Here is a free cookie for you! 🍪")
+	if err != nil {
+		log.Fatal(err)
+		return
+	}
 }
 
-func handleRequest() {
-
-	http.HandleFunc("/", homePage)
-	http.ListenAndServe("localhost:10000", nil)
+func homepage(w http.ResponseWriter, r *http.Request) {
+	_, err := fmt.Fprintln(w, "Welcome to the Cafe! Choose /coffee or /snacks")
+	if err != nil {
+		log.Fatal(err)
+		return
+	}
 }
 
 func main() {
+	r := mux.NewRouter()
 
-	Products = []Product{
-		{1, "Laptop", 10, 10000},
-		{2, "Mobile", 10, 10000},
-		{3, "Tablet", 10, 10000},
+	r.HandleFunc("/", homepage)
+	r.HandleFunc("/coffee", coffeeHandler)
+	r.HandleFunc("/snacks", snacksHandler)
+
+	fmt.Println("Cafe is open at port 8080...")
+	err := http.ListenAndServe(":8080", r)
+	if err != nil {
+		log.Fatal("ListenAndServe: ", err)
+		return
 	}
-	handleRequest()
 }
