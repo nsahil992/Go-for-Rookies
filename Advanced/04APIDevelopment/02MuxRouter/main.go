@@ -38,8 +38,8 @@ func main() {
 	r.HandleFunc("/coffee", coffeeHandler)
 	r.HandleFunc("/snacks", snacksHandler)
 
-	fmt.Println("Cafe is open at port 8080...")
-	err := http.ListenAndServe(":8080", r)
+	fmt.Println("Cafe is open at port 9090...")
+	err := http.ListenAndServe(":9090", r)
 	if err != nil {
 		log.Fatal("ListenAndServe: ", err)
 		return
