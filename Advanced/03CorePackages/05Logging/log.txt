@@ -1,0 +1,4 @@
+time="2025-01-24T10:54:42+05:30" level=info msg="Hello World"
+time="2025-01-24T10:54:42+05:30" level=warning msg="Hello World"
+time="2025-01-24T10:54:42+05:30" level=error msg="Hello World"
+time="2025-01-24T10:54:42+05:30" level=panic msg="Hello World"
