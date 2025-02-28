@@ -5,12 +5,16 @@ import (
 	"net/http"
 )
 
-func main() {
-	http.HandleFunc("/", homepage)
-	http.ListenAndServe("localhost:10000", nil)
+func helloHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintln(w, "Hello User form the handler package")
 }
 
-func homepage(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Welcome to the homepage!")
-	fmt.Println("Endpoint Hit: homepage")
+func main() {
+	http.HandleFunc("/hello", helloHandler)
+	fmt.Println("Cafe is open at Port 8080...")
+	err := http.ListenAndServe(":8080", nil)
+	if err != nil {
+		fmt.Println("Error occured", err)
+		return
+	}
 }
